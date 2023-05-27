@@ -41,7 +41,7 @@ public class MedicoController {
 
     @GetMapping
     public ResponseEntity<Page<DadosListagemMedico>> listar(Pageable paginacao){
-      var page = repository.findAll(paginacao).map(DadosListagemMedico::new);
+      var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
       return   ResponseEntity.ok(page);
     }
 
@@ -56,7 +56,8 @@ public class MedicoController {
     @DeleteMapping("/{id}")
     @Transactional
     public  ResponseEntity excluir(@PathVariable Long id ){
-      repository.deleteById(id);
+      var medico = repository.getReferenceById(id);
+      medico.excluir();
       return ResponseEntity.noContent().build();
 
     }
