@@ -22,7 +22,7 @@ import med.voll.api.domain.paciente.Paciente;
 @ActiveProfiles("test")
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
- class MedicoRepositoryTest {
+public class MedicoRepositoryTest {
 
     @Autowired
     private MedicoRepository medicoRepository;

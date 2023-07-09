@@ -33,7 +33,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public  ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder){
+    public  ResponseEntity<DadosDetalhamentoMedico> cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder){
       var medico =  new Medico(dados);
       repository.save(medico);
 
@@ -49,7 +49,7 @@ public class MedicoController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody DadosAtualizacaoMedico dados){
+    public ResponseEntity<DadosDetalhamentoMedico> atualizar(@RequestBody DadosAtualizacaoMedico dados){
       var medico = repository.getReferenceById(dados.id());
       medico.atualizarInformacoes(dados);
       return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
